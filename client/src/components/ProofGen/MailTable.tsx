@@ -349,7 +349,11 @@ export const MailTable: React.FC<MailTableProps> = ({
             <TitleAndOAuthContainer>
               <EmailAddressTitle>
                 <EmailLabel>
-                  <EmailLabelTitle>Logged in as:&nbsp;</EmailLabelTitle>
+                  {
+                    isMobile ?
+                      <EmailLabelTitle></EmailLabelTitle> :
+                      <EmailLabelTitle>Logged in as:&nbsp;</EmailLabelTitle>
+                  }
                   <EmailLabelValue>{formatAddress(loggedInGmail!)}</EmailLabelValue>
                 </EmailLabel>
               </EmailAddressTitle>
