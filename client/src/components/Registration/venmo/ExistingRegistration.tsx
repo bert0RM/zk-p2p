@@ -18,6 +18,7 @@ import { venmoStrings, commonStrings } from '@helpers/strings';
 import useAccount from '@hooks/useAccount';
 import useRegistration from '@hooks/venmo/useRegistration';
 import useSmartContracts from '@hooks/useSmartContracts';
+import {useNavigate} from "react-router-dom";
 
 
 interface ExistingRegistrationProps {
@@ -104,6 +105,11 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
       setShouldConfigureMintSbtWrite(false);
     }
   }, [isRegistered, venmoNftUri])
+
+  const navigate = useNavigate();
+  const navigateToSwapHandler = () => {
+    navigate('/swap');
+  };
 
   /*
    * Component
@@ -206,6 +212,12 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                     name={`venmoProfile`}
                     value={registrationHash ? registrationHash : ""}
                   />
+                }
+                {
+                  isRegistered &&
+                    <Button onClick={navigateToSwapHandler} height={40}>
+                        Swap
+                    </Button>
                 }
               </InputsContainer>
             </Body>

@@ -19,6 +19,7 @@ import useAccount from '@hooks/useAccount';
 import useRegistration from '@hooks/hdfc/useRegistration';
 import useSmartContracts from '@hooks/useSmartContracts';
 import {ConnectButton} from "@rainbow-me/rainbowkit";
+import {useNavigate} from "react-router-dom";
 
 
 interface ExistingRegistrationProps {
@@ -100,6 +101,11 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
       setShouldConfigureMintSbtWrite(false);
     }
   }, [isRegistered, hdfcNftUri])
+
+  const navigate = useNavigate();
+  const navigateToSwapHandler = () => {
+    navigate('/swap');
+  };
 
 
   /*
@@ -203,6 +209,12 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                     name={`hdfcProfile`}
                     value={registrationHash ? registrationHash : ""}
                   />
+                }
+                {
+                  isRegistered &&
+                    <Button onClick={navigateToSwapHandler} height={40}>
+                        Swap
+                    </Button>
                 }
               </InputsContainer>
             </Body>
