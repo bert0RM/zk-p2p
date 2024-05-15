@@ -18,6 +18,7 @@ import { garantiStrings, commonStrings } from '@helpers/strings';
 import useAccount from '@hooks/useAccount';
 import useRegistration from '@hooks/garanti/useRegistration';
 import useSmartContracts from '@hooks/useSmartContracts';
+import {useNavigate} from "react-router-dom";
 
 
 interface ExistingRegistrationProps {
@@ -99,6 +100,11 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
       setShouldConfigureMintSbtWrite(false);
     }
   }, [isRegistered, garantiNftUri])
+
+  const navigate = useNavigate();
+  const navigateToSwapHandler = () => {
+    navigate('/swap');
+  };
 
 
   /*
@@ -189,6 +195,12 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                   name={`registrationStatus`}
                   value={isRegistered ? "Registered" : "Not Registered"}
                 />
+
+                {isLoggedIn && !isRegistered ? (
+                  <Button onClick={handleNewRegistrationClick} height={40}>
+                    + Register
+                  </Button>
+                ) : null}
                 
                 {
                   isRegistered && <ReadOnlyInput
@@ -196,6 +208,12 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                     name={`garantiProfile`}
                     value={registrationHash ? registrationHash : ""}
                   />
+                }
+                {
+                  isRegistered &&
+                    <Button onClick={navigateToSwapHandler} height={40}>
+                        Swap
+                    </Button>
                 }
               </InputsContainer>
             </Body>
