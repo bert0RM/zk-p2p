@@ -1308,7 +1308,6 @@ const NetworkNameContainer = styled.div`
   flex-direction: column;
   gap: 0.4rem;
   justify-content: center;
-  align-items: center;
   text-align: left;
 `;
 
