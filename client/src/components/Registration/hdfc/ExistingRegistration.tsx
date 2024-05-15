@@ -18,6 +18,7 @@ import { hdfcStrings, commonStrings } from '@helpers/strings';
 import useAccount from '@hooks/useAccount';
 import useRegistration from '@hooks/hdfc/useRegistration';
 import useSmartContracts from '@hooks/useSmartContracts';
+import {ConnectButton} from "@rainbow-me/rainbowkit";
 
 
 interface ExistingRegistrationProps {
@@ -189,7 +190,13 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                   name={`registrationStatus`}
                   value={isRegistered ? "Registered" : "Not Registered"}
                 />
-                
+
+                {isLoggedIn && !isRegistered ? (
+                  <Button onClick={handleNewRegistrationClick} height={40}>
+                    + Register
+                  </Button>
+                ) : null}
+
                 {
                   isRegistered && <ReadOnlyInput
                     label="HDFC Identifier"

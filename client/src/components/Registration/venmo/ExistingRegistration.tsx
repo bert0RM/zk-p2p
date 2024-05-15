@@ -193,6 +193,12 @@ export const ExistingRegistration: React.FC<ExistingRegistrationProps> = ({
                   name={`depositAmount`}
                   value={isRegistered ? "Registered" : "Not Registered"}
                 />
+
+                {isLoggedIn && !isRegistered ? (
+                  <Button onClick={handleNewRegistrationClick} height={40}>
+                    + Register
+                  </Button>
+                ) : null}
                 
                 {
                   isRegistered && <ReadOnlyInput
